@@ -1,13 +1,9 @@
-//============================
+
 // ShoeFlex JavaScript
-// Part 1
-//============================
 
 document.addEventListener("DOMContentLoaded", function () {
 
-    //------------------------
     // CART
-    //------------------------
 
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
@@ -27,10 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     updateCartCounter();
 
-
-    //------------------------
     // ADD TO CART
-    //------------------------
 
     const buttons = document.querySelectorAll(".add-cart");
 
@@ -59,10 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
-
-    //------------------------
     // SEARCH
-    //------------------------
 
     const search = document.getElementById("searchBox");
 
@@ -98,10 +88,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-
-    //------------------------
     // HOVER EFFECT
-    //------------------------
 
     const cards=document.querySelectorAll(".card");
 
@@ -127,12 +114,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     });
 
-
-
-
-    //------------------------
     // BUTTON ANIMATION
-    //------------------------
 
     const btns=document.querySelectorAll(".btn");
 
@@ -156,9 +138,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-    //------------------------
     // ACTIVE NAV LINK
-    //------------------------
 
     const current=window.location.pathname.split("/").pop();
 
@@ -175,10 +155,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
-
-    //------------------------
     // SMOOTH SCROLL
-    //------------------------
 
     document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
 
