@@ -180,3 +180,157 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 });
+
+// TOAST NOTIFICATION
+
+function showToast(message){
+
+    const toast=document.createElement("div");
+
+    toast.innerHTML=message;
+
+    toast.style.position="fixed";
+    toast.style.top="20px";
+    toast.style.right="20px";
+    toast.style.background="#222";
+    toast.style.color="#fff";
+    toast.style.padding="12px 18px";
+    toast.style.borderRadius="8px";
+    toast.style.zIndex="9999";
+    toast.style.boxShadow="0 10px 20px rgba(0,0,0,.3)";
+    toast.style.opacity="0";
+    toast.style.transition=".4s";
+
+    document.body.appendChild(toast);
+
+    setTimeout(()=>{
+
+        toast.style.opacity="1";
+
+    },100);
+
+    setTimeout(()=>{
+
+        toast.style.opacity="0";
+
+        setTimeout(()=>{
+
+            toast.remove();
+
+        },400);
+
+    },2500);
+
+}
+
+// WISHLIST
+
+let wishlist=JSON.parse(localStorage.getItem("wishlist")) || [];
+
+const wishlistCounter=document.getElementById("wishlist-count");
+
+function updateWishlist(){
+
+    if(wishlistCounter){
+
+        wishlistCounter.innerHTML=wishlist.length;
+
+    }
+
+    localStorage.setItem("wishlist",JSON.stringify(wishlist));
+
+}
+
+updateWishlist();
+
+document.querySelectorAll(".fa-heart").forEach(icon=>{
+
+    icon.addEventListener("click",function(e){
+
+        e.preventDefault();
+
+        const card=this.closest(".card");
+
+        if(card){
+
+            const name=card.querySelector(".card-title").innerText;
+
+            wishlist.push(name);
+
+            updateWishlist();
+
+            showToast(name+" added to Wishlist ❤️");
+
+        }
+
+    });
+
+});
+
+
+// DARK MODE
+
+const darkBtn=document.getElementById("darkModeBtn");
+
+if(localStorage.getItem("theme")=="dark"){
+
+    document.body.classList.add("bg-dark");
+    document.body.classList.add("text-white");
+
+}
+
+if(darkBtn){
+
+darkBtn.addEventListener("click",()=>{
+
+    document.body.classList.toggle("bg-dark");
+    document.body.classList.toggle("text-white");
+
+    if(document.body.classList.contains("bg-dark")){
+
+        localStorage.setItem("theme","dark");
+
+    }
+
+    else{
+
+        localStorage.setItem("theme","light");
+
+    }
+
+});
+
+}
+
+// BACK TO TOP
+
+const topBtn=document.getElementById("topBtn");
+
+window.addEventListener("scroll",()=>{
+
+    if(window.scrollY>300){
+
+        topBtn.style.display="block";
+
+    }
+
+    else{
+
+        topBtn.style.display="none";
+
+    }
+
+});
+
+
+topBtn.addEventListener("click",()=>{
+
+    window.scrollTo({
+
+        top:0,
+
+        behavior:"smooth"
+
+    });
+
+});
